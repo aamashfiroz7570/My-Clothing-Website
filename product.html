@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Clothing Store</title>
+  <link rel="icon" href="img2.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: rgb(87, 142, 142);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+      position: relative;
+    }
+
+    .logo img {
+      width: 125px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 10px;
+      transition: max-height 0.5s ease;
+      overflow: hidden;
+    }
+
+    nav ul li a button {
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: #ff6f61;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    nav ul li a button:hover {
+      background: #ff3b2e;
+    }
+
+    .menu-icon {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      display: none;
+    }
+
+    /* Products */
+    .small-container {
+      max-width: 1080px;
+      margin: auto;
+      padding: 20px 0;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .row-2 {
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .col-4 {
+      flex: 1 1 calc(25% - 20px);
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .col-4 img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .col-4:hover {
+      transform: translateY(-5px);
+    }
+
+    h4 {
+      margin: 10px 0;
+      font-weight: 600;
+    }
+
+    p {
+      color: #555;
+    }
+
+    .rating .fa {
+      color: #ff6f61;
+    }
+
+    /* Sliding Image Carousel */
+    .slider {
+      overflow: hidden;
+      margin: 30px auto;
+      padding: 20px 0;
+      border-radius: 10px;
+      background: radial-gradient(#8aaab8, #326960);
+    }
+
+    .slide-track {
+      display: flex;
+      width: calc(200px * 6);
+      animation: scroll 20s linear infinite;
+    }
+
+    .slide {
+      width: 200px;
+      flex-shrink: 0;
+      margin: 0 15px;
+    }
+
+    .slide img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Footer */
+    .footer {
+      background: #222;
+      color: #fff;
+      padding: 40px 20px;
+      margin-top: 40px;
+    }
+
+    .footer .row {
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-col-1,
+    .footer-col-2,
+    .footer-col-3,
+    .footer-col-4 {
+      flex: 1 1 220px;
+      margin-bottom: 20px;
+    }
+
+    .footer h3 {
+      margin-bottom: 10px;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 8px;
+    }
+
+    .app-logo img {
+      width: 120px;
+      margin: 10px 5px 0 0;
+    }
+
+    .Copyright {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      border-top: 1px solid #444;
+      padding-top: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        position: relative;
+      }
+
+      nav ul {
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        background: #333;
+        border-radius: 8px;
+        transition: max-height 0.5s ease;
+        margin-top: 10px;
+        padding: 10px;
+      }
+
+      .menu-icon {
+        display: block;
+      }
+
+      .col-4 {
+        flex: 1 1 calc(50% - 20px);
+      }
+
+      .slide-track {
+        width: calc(150px * 6);
+      }
+
+      .slide {
+        width: 150px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .col-4 {
+        flex: 1 1 100%;
+      }
+
+      .slide-track {
+        width: calc(120px * 6);
+      }
+
+      .slide {
+        width: 120px;
+        margin: 0 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <img src="img3.png" alt="Logo">
+      </div>
+      <div>
+      </div>
+      <img src="img33.png" class="menu-icon" onclick="menutoggle()" >
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="index.html"><button class="btn-sign">Home</button></a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Products -->
+  <div class="small-container">
+    <div class="row row-2">
+      <h2>All Products</h2>
+      <select>
+        <option>Default Sorting</option>
+        <option>Sort by price</option>
+        <option>Sort by rating</option>
+        <option>Sort by sale</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <img src="img46.avif">
+        <h4>Men White T-shirt</h4>
+        <div class="rating">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+            class="fa fa-star"></i><i class="fa fa-star-o"></i>
+        </div>
+        <p>$10.00</p>
+      </div>
+      <div class="col-4">
+        <img src="img44.avif">
+        <h4>Men Black Half T-shirt</h4>
+        <div class="rating">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+            class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
+        </div>
+        <p>$5.00</p>
+      </div>
+      <div class="col-4">
+        <img src="img49.avif">
+        <h4>Blue Shirt</h4>
+        <div class="rating">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+            class="fa fa-star"></i><i class="fa fa-star-o"></i>
+        </div>
+        <p>$4.00</p>
+      </div>
+      <div class="col-4">
+        <img src="img48.avif">
+        <h4>Men Blue Shirt</h4>
+        <div class="rating">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+            class="fa fa-star"></i><i class="fa fa-star"></i>
+        </div>
+        <p>$11.00</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sliding Image Carousel -->
+  <div class="slider">
+    <div class="slide-track">
+      <div class="slide"><img src="img39.avif" alt=""></div>
+      <div class="slide"><img src="img40.avif" alt=""></div>
+      <div class="slide"><img src="img41.avif" alt=""></div>
+      <div class="slide"><img src="img39.avif" alt=""></div>
+      <div class="slide"><img src="img40.avif" alt=""></div>
+      <div class="slide"><img src="img41.avif" alt=""></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col-1">
+          <h3>Download Our App</h3>
+          <p>Download App for Android and iOS phones.</p>
+          <div class="app-logo">
+            <img src="img31.webp">
+            <img src="img32.png">
+          </div>
+        </div>
+        <div class="footer-col-2">
+          <img src="img30.png">
+          <p>Our purpose is to make sustainable fashion accessible to everyone.</p>
+        </div>
+        <div class="footer-col-3">
+          <h3>Useful Links</h3>
+          <ul>
+            <li>Coupons</li>
+            <li>Blog Products</li>
+            <li>Return Policy</li>
+            <li>Join Affiliate</li>
+          </ul>
+        </div>
+        <div class="footer-col-4">
+          <h3>Follow Us</h3>
+          <ul>
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instagram</li>
+            <li>YouTube</li>
+          </ul>
+        </div>
+      </div>
+      <p class="Copyright">© 2025 My Clothing Store</p>
+    </div>
+  </div>
+
+  <!-- JS for toggle menu -->
+  <script>
+    var MenuItems = document.getElementById("MenuItems");
+    MenuItems.style.maxHeight = "0px";
+
+    function menutoggle() {
+      if (MenuItems.style.maxHeight === "0px") {
+        MenuItems.style.maxHeight = "200px";
+      } else {
+        MenuItems.style.maxHeight = "0px";
+      }
+    }
+  </script>
+</body>
+
+</html>

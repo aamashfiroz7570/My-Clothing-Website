@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - My Clothing Store</title>
+    <link rel="icon" href="img2.png">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: radial-gradient(#8aaab8, #326960);
+        }
+
+        /* Header */
+        .header {
+            background: radial-gradient(#8aaab8, #326960);
+            padding: 10px 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo img {
+            width: 125px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li button {
+            border: none;
+            background: #ff6f61;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Cart Table */
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cart-table th,
+        .cart-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-table th {
+            background-color: #ff6f61;
+            color: white;
+        }
+
+        .cart-table img {
+            width: 80px;
+            height: auto;
+        }
+
+        .quantity input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .remove-btn {
+            background-color: #ff3b2e;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .checkout {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .checkout h3 {
+            font-size: 20px;
+        }
+
+        .checkout button {
+            padding: 10px 20px;
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer h3 {
+            margin-bottom: 10px;
+        }
+
+        .footer p,
+        .footer ul {
+            font-size: 14px;
+            margin: 5px 0;
+            padding: 0;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li {
+            margin-bottom: 5px;
+        }
+
+        /* Responsive */
+        @media(max-width: 992px) {
+            nav ul {
+                gap: 10px;
+            }
+
+            .cart-table th,
+            .cart-table td {
+                padding: 10px;
+            }
+
+            .cart-table img {
+                width: 60px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .cart-table,
+            .cart-table tbody,
+            .cart-table tr,
+            .cart-table td,
+            .cart-table th {
+                display: block;
+                width: 100%;
+            }
+
+            .cart-table tr {
+                margin-bottom: 15px;
+                border-bottom: 2px solid #ddd;
+            }
+
+            .cart-table th {
+                display: none;
+            }
+
+            .cart-table td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            .cart-table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                width: 45%;
+                padding-left: 5px;
+                font-weight: bold;
+                text-align: left;
+            }
+
+            .checkout {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .checkout button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="navbar container">
+            <div class="logo"><img src="img3.png" alt="Logo"></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><button>Home</button></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Cart Table -->
+    <div class="container">
+        <h2>My Shopping Cart</h2>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- All Products -->
+                <tr>
+                    <td data-label="Product"><img src="img8.png" alt="Men jeans"></td>
+                    <td data-label="Name">Men Jeans</td>
+                    <td data-label="Price">$4.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$4.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img9.png" alt="Men Black Tshirt"></td>
+                    <td data-label="Name">Men Black Tshirt</td>
+                    <td data-label="Price">$8.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$8.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img10.png" alt="Men Printed Shirt"></td>
+                    <td data-label="Name">Men Printed Shirt</td>
+                    <td data-label="Price">$6.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$6.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img11.png" alt="Men Redtape Shoes"></td>
+                    <td data-label="Name">Men Redtape Shoes</td>
+                    <td data-label="Price">$17.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$17.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img12.png" alt="Red Printed T-shirt"></td>
+                    <td data-label="Name">Red Printed T-shirt</td>
+                    <td data-label="Price">$6.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$6.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img13.png" alt="Men blue T-shirt"></td>
+                    <td data-label="Name">Men Blue T-shirt</td>
+                    <td data-label="Price">$6.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$6.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img14.png" alt="Men Smart Watch"></td>
+                    <td data-label="Name">Men Smart Watch</td>
+                    <td data-label="Price">$14.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$14.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img15.png" alt="Men Shoes"></td>
+                    <td data-label="Name">Men Shoes</td>
+                    <td data-label="Price">$10.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$10.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img16.png" alt="Navy blue Socks"></td>
+                    <td data-label="Name">Navy Blue Socks</td>
+                    <td data-label="Price">$2.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$2.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img17.png" alt="Men Black Formal Shoes"></td>
+                    <td data-label="Name">Men Black Formal Shoes</td>
+                    <td data-label="Price">$11.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$11.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img18.png" alt="Men blue Hoodie"></td>
+                    <td data-label="Name">Men Blue Hoodie</td>
+                    <td data-label="Price">$4.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$4.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Product"><img src="img19.png" alt="Men Deodorant"></td>
+                    <td data-label="Name">Men Deodorant</td>
+                    <td data-label="Price">$2.00</td>
+                    <td data-label="Quantity" class="quantity"><input type="number" value="1" min="1"></td>
+                    <td data-label="Subtotal">$2.00</td>
+                    <td data-label="Remove"><button class="remove-btn">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="checkout">
+            <h3>Total: $0.00</h3>
+            <button>Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <h3>My Clothing Store</h3>
+        <p>Our Purpose is to Sustainably Make the Pleasure and Benefits of sports accessible to the many.</p>
+        <p>&copy; 2025 My Clothing Store</p>
+    </div>
+
+    <!-- Cart JS -->
+    <script>
+        const rows = document.querySelectorAll(".cart-table tbody tr");
+        const totalDisplay = document.querySelector(".checkout h3");
+
+        rows.forEach(row => {
+            const qtyInput = row.querySelector("input");
+            const price = parseFloat(row.cells[2].textContent.replace('$', ''));
+            const subtotalCell = row.cells[4];
+            const removeBtn = row.querySelector(".remove-btn");
+
+            qtyInput.addEventListener("change", () => {
+                let qty = parseInt(qtyInput.value);
+                if (qty < 1) qty = 1;
+                qtyInput.value = qty;
+                subtotalCell.textContent = "$" + (price * qty).toFixed(2);
+                updateTotal();
+            });
+
+            removeBtn.addEventListener("click", () => {
+                row.remove();
+                updateTotal();
+            });
+        });
+
+        function updateTotal() {
+            let total = 0;
+            document.querySelectorAll(".cart-table tbody tr").forEach(row => {
+                total += parseFloat(row.cells[4].textContent.replace('$', ''));
+            });
+            totalDisplay.textContent = "Total: $" + total.toFixed(2);
+        }
+
+        updateTotal();
+    </script>
+</body>
+
+</html>
